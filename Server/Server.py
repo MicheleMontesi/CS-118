@@ -161,6 +161,7 @@ def thread_cycle(thread):
 
 if __name__ == '__main__':
     client_address = ('localhost', 10000)
+    num_clients = 0
 
     sock = sk.socket(sk.AF_INET, sk.SOCK_DGRAM)
     sock.setsockopt(sk.SOL_SOCKET, sk.SO_REUSEADDR, 1)

@@ -92,7 +92,7 @@ def receive_file(address):
     # File receiving processing
     progress = tqdm.tqdm(range(file_size), f'Receive {chosen_file_name}', unit='B', unit_divisor=1024, unit_scale=True)
 
-    with open(f'8_18_' + chosen_file_name, 'wb') as f:
+    with open('r_' + chosen_file_name, 'wb') as f:
         for _ in progress:
             # Read data from client
 
@@ -164,6 +164,7 @@ def ask_put():
     if os.path.exists(file_name):
         send_choice(server_address, choice)
         send_file(server_address, file_name)
+        print(welcome_message)
     else:
         os.system('cls' if os.name == 'nt' else 'clear')
         print('\r\nThis file doesn\'t exists in local, chose an existing file.\r\n')
