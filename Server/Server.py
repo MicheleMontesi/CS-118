@@ -33,14 +33,11 @@ def receive_file(address):
     udp_socket.bind(address)
     recv_data = udp_socket.recvfrom(buffer_size)
     recv_file_info = recv_data[0].decode('utf-8')  # Storing the received data, Filename
-    # print(f'Received file information {recv_file_info}')
     c_address = recv_data[1]  # Storing the address information of the costumer
-    # Print client ip
     print(f'Client {c_address} Connect')
     chosen_file_name, file_size = recv_file_info.split(Separator)
     # Get the name of the file, Size
     chosen_file_name = os.path.basename(chosen_file_name)
-    # print(chosen_file_name)
 
     file_size = int(file_size)
 
