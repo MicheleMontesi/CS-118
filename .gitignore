@@ -5,7 +5,6 @@
 *.Flask
 *.out
 *.synctex.gz
-*.tex
 *.toc
 
 # Byte-compiled / optimized / DLL files
