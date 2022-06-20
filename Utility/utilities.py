@@ -5,6 +5,8 @@ import tqdm
 
 # Transmission data spacer
 Separator = '<SEPARATOR>'
+# Files directory
+Directory = 'Files'
 
 
 def send_file(address, chosen_file_name):
@@ -12,11 +14,11 @@ def send_file(address, chosen_file_name):
     host, port = address
 
     # File buffer
-    buffer_size = 4096 * 10
+    buffer_size = 1024
     # Transfer file name
     filename = chosen_file_name
     # File size
-    file_size = os.path.getsize(filename)
+    file_size = os.path.getsize(os.path.join(Directory, filename))
     # Create socket link
 
     s = sk.socket(sk.AF_INET, sk.SOCK_DGRAM)
@@ -33,13 +35,13 @@ def send_file(address, chosen_file_name):
     # File transfer
     progress = tqdm.tqdm(range(file_size), f'Send {filename}', unit='B', unit_divisor=1024)
 
-    with open(filename, 'rb') as f:
+    with open(os.path.join(Directory, filename), 'rb') as f:
         # Read the file
         for _ in progress:
             bytes_read = f.read(buffer_size)
             if not bytes_read:
                 print('Exit transmission, transmission is complete!')
-                s.sendall(b'file_download_exit')
+                s.sendall(b'file_shared_exit')
                 break
             s.sendall(bytes_read)
             progress.update(len(bytes_read))
@@ -51,7 +53,7 @@ def send_file(address, chosen_file_name):
 
 def receive_file(address):
     # File buffer
-    buffer_size = 4096 * 10
+    buffer_size = 1024
 
     udp_socket = sk.socket(sk.AF_INET, sk.SOCK_DGRAM)
     udp_socket.setsockopt(sk.SOL_SOCKET, sk.SO_REUSEADDR, 1)
@@ -70,13 +72,13 @@ def receive_file(address):
     # File receiving processing
     progress = tqdm.tqdm(range(file_size), f'Receive {chosen_file_name}', unit='B', unit_divisor=1024, unit_scale=True)
 
-    with open('r_' + chosen_file_name, 'wb') as f:
+    with open(os.path.join(Directory, 'r_' + chosen_file_name), 'wb') as f:
         for _ in progress:
             # Read data from client
 
             bytes_read = udp_socket.recv(buffer_size)
             # If there is no data transfer content
-            if bytes_read == b'file_download_exit':
+            if bytes_read == b'file_shared_exit':
                 print('Complete transmission!')
                 break
             # Read and write

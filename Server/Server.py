@@ -8,6 +8,8 @@ from Utility.utilities import *
 Separator = '<SEPARATOR>'
 # Threads status flags
 flag_finished_server = True
+# Files directory
+Directory = 'Files'
 
 
 def receive_choice(address):
@@ -20,7 +22,7 @@ def reply_list():
     global flag_finished_server
     flag_finished_server = False
 
-    data = '\r\n' + str(os.listdir()) + '\r\n'
+    data = '\r\n' + str(os.listdir(Directory)) + '\r\n'
     send_info(client_address, data)
     print('inviato')
 
@@ -33,7 +35,7 @@ def reply_get():
 
     file_name = receive_choice(client_address)
     print(file_name)
-    if os.path.exists(file_name):
+    if os.path.exists(os.path.join(Directory, file_name)):
         send_info(client_address, '1')
         send_file(client_address, file_name)
     else:

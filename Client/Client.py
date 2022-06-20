@@ -7,12 +7,14 @@ from Utility.utilities import *
 welcome_message = '\r\nClient-Server Project\r\n\r\n' \
                   'Available options:\r\n\r\n' \
                   '> list)\tReturn the list of the downloadable files on the server\r\n' \
-                  '> get)\tDownload a file from the server, given a name\r\n' \
+                  '> get)\tDownloadedFiles a file from the server, given a name\r\n' \
                   '> put)\tUpload a file on the server\r\n' \
                   '> exit)\tExit the client and shuts down the server\r\n'
 
 # Threads status flags
 flag_finished = True
+# Files directory
+Directory = 'Files'
 
 
 def send_choice(address, taken_choice):
@@ -61,7 +63,7 @@ def ask_put():
     os.system('cls' if os.name == 'nt' else 'clear')
     file_name = input('Insert the name of the file to upload to the server\r\n> ')
     print(file_name)
-    if os.path.exists(file_name):
+    if os.path.exists(os.path.join(Directory, file_name)):
         send_choice(server_address, choice)
         send_file(server_address, file_name)
         print(welcome_message)
