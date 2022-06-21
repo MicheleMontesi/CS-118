@@ -50,21 +50,21 @@ Le funzioni richieste sono:
 
 L'architettura é composta da due moduli: il modulo lato \texttt{client} ed il modulo lato \texttt{server}.
 \begin{itemize}
-    \item Per quanto riguarda il lato client, é stata implementata una classe \emph{client}, la qquale fornisce ed espone
+    \item Per quanto riguarda il lato client, é stata implementata una classe \emph{client}, la quale fornisce ed espone
     in console le funzionalitá richieste.
     \item Il server, sta in ascolto, aspettando un input riguardante la funzione scelta dal client.
-    Quando perviene la richiesta, il server avvia un thread riguardante l'operazione in questione.
+    Quando perviene la richiesta, il server avvia un thread circa l'operazione in questione.
 \end{itemize}
-Le funzioni in comune tra i due moduli sono stati inseriti in una classe di utility evitando cosí la ripetizione del codice.
+Le funzioni in comune tra i due moduli sono stati inseriti in una classe di \texttt{utility} evitando cosí la ripetizione del codice.
 
 \section{Design dettagliato}
 \subsection{Invio di un file da Client a Server} \label{clientToServer}
-Per selezionare un file verrá fatta una verifica della sua esistenza. Nel caso esista si proseguirá
-con l'invio, altrimenti verrá restituito un messaggio d'errore. Appurata l'esistenza di questo, viene inviato
+Per selezionare un file verrá fatta una verifica della sua esistenza lato client. Nel caso esista si proseguirá
+con l'invio, altrimenti verrá restituito un messaggio d'errore. Appurata l'esistenza di questo, verrá inviato
 al server il nome del file assieme alla sua dimensione, inviando una stringa. Questa é separata da una costante \emph{Separator}
 la quale sará usata come divisore tra le due informazioni. Una volta arrivata al server, questo inizierá la scrittura
-di un file a cui verrá dato il nome del file originale con una \emph{'r\_'} davanti, questo permette di evitare l'\emph{overwrite} di file
-originali del server ma la permette per file caricati in un primo momento, i quali devono essere aggiornati alla nuova versione.
+di un file a cui verrá dato il nome del file originale con una \emph{'r\_'} davanti, questo permetterá di evitare l'\emph{overwrite} di file
+originali del server ma la permetterá per file caricati in un primo momento, i quali dovranno poter essere aggiornati alla nuova versione.
 \\
 Per compiere l'operazione di \emph{put} é stato deciso di dividere il file in questione in blocchi da \(1024\) bytes.
 \\
