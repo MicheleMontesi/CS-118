@@ -58,7 +58,7 @@ L'architettura é composta da due moduli: il modulo lato \texttt{client} ed il m
 Le funzioni in comune tra i due moduli sono stati inseriti in una classe di utility evitando cosí la ripetizione del codice.
 
 \section{Design dettagliato}
-\subsection{Invio di un file da Client a Server}
+\subsection{Invio di un file da Client a Server} \label{clientToServer}
 Per selezionare un file verrá fatta una verifica della sua esistenza. Nel caso esista si proseguirá
 con l'invio, altrimenti verrá restituito un messaggio d'errore. Appurata l'esistenza di questo, viene inviato
 al server il nome del file assieme alla sua dimensione, inviando una stringa. Questa é separata da una costante \emph{Separator}
@@ -82,7 +82,13 @@ Il server quando leggerá questa stringa tra i bytes ricevuti, interromperá la 
 \subsection{Ricezione di un file da Server a Client}
 Il meccanismo di \emph{get} é praticamente uguale al meccanismo di \emph{put} con l'unica differenza
 che il controllo di esistenza del file viene eseguito sul server, il quale nel caso di esistenza
-consente l'invio del file, mentre in caso contrario restituirá un messaggio d'errore.
+consente l'invio del file, mentre in caso contrario restituirá un messaggio d'errore. 
+\\
+Nel dettaglio, al momento della richiesta il client informerá il server sull'operazione da eseguire,
+dopodiché il client fará richiesta all'operatore esterno di immettere il nome di un file esistente sul server. 
+Una volta inserito, e confermato, questo verrá inoltrato al server, il quale ne controllerá l'esistenza.
+In caso affermativo, il server procederá all'invio come spiegato nel capitolo precedente (\ref{clientToServer})
+
 
 \begin{figure}[H]
     \centering
