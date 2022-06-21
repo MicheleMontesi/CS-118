@@ -34,7 +34,6 @@ def reply_get():
     flag_finished_server = False
 
     file_name = receive_choice(client_address)
-    print(file_name)
     if os.path.exists(os.path.join(Directory, file_name)):
         send_info(client_address, '1')
         send_file(client_address, file_name)

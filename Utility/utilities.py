@@ -24,9 +24,9 @@ def send_file(address, chosen_file_name):
     s = sk.socket(sk.AF_INET, sk.SOCK_DGRAM)
     s.setsockopt(sk.SOL_SOCKET, sk.SO_REUSEADDR, 1)
 
-    print(f'Server connection {host}:{port}')
+    print(f'Client connection on {host}:{port}')
     s.connect((host, port))
-    print('Successful connection to server')
+    print('Successful connection to client')
 
     # Send file name and size, which must be encoded
     sleep(1)
@@ -40,7 +40,7 @@ def send_file(address, chosen_file_name):
         for _ in progress:
             bytes_read = f.read(buffer_size)
             if not bytes_read:
-                print('Exit transmission, transmission is complete!')
+                print('\n\nExit transmission, transmission is complete!\n')
                 s.sendall(b'file_shared_exit')
                 break
             s.sendall(bytes_read)
@@ -79,7 +79,7 @@ def receive_file(address):
             bytes_read = udp_socket.recv(buffer_size)
             # If there is no data transfer content
             if bytes_read == b'file_shared_exit':
-                print('Complete transmission!')
+                print('\n\nComplete transmission!\n')
                 break
             # Read and write
             f.write(bytes_read)
