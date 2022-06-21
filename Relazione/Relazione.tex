@@ -64,18 +64,17 @@ con l'invio, altrimenti verrá restituito un messaggio d'errore. Appurata l'esis
 al server il nome del file assieme alla sua dimensione, inviando una stringa. Questa é separata da una costante \emph{Separator}
 la quale sará usata come divisore tra le due informazioni. Una volta arrivata al server, questo inizierá la scrittura
 di un file a cui verrá dato il nome del file originale con una \emph{'r\_'} davanti, questo permette di evitare l'\emph{overwrite} di file
-originale del server ma la permette per file caricati in un primo momento i quali devono essere aggiornati dalla nuova versione.
+originali del server ma la permette per file caricati in un primo momento, i quali devono essere aggiornati alla nuova versione.
 \\
 Per compiere l'operazione di \emph{put} é stato deciso di dividere il file in questione in blocchi da \(1024\) bytes.
 \\
-Per seguire l'andamento dell'invio del file é stata inserita una barra di progressione divisa in blocchi da 1024 bytes.
+Per seguire l'andamento dell'invio del file é stata inserita una barra di progressione divisa anch'essa in blocchi da 1024 bytes.
 Per completare l'invio del file verrá inviata una stringa contenente \texttt{file\_shared\_exit}.
-\\
 Il server quando leggerá questa stringa tra i bytes ricevuti, interromperá la ricezione e chiuderá il socket.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm]{img/clientToServer.png}
+    \includegraphics[height=9cm]{img/clientToServer.png}
     \caption{Invio di un file da Client a Server}
 \end{figure}
 
@@ -87,7 +86,7 @@ consente l'invio del file, mentre in caso contrario restituirá un messaggio d'e
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm]{img/serverToClient.png}
+    \includegraphics[height=9cm]{img/serverToClient.png}
     \caption{Invio di un file da Server a Client}
 \end{figure}
 
