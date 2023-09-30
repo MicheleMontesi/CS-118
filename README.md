@@ -1,29 +1,29 @@
-# Elaborato di Programmazione di Reti A.A. 2022
-## Traccia #2
-Realizzazione di un applicativo client-server per il trasferimento di file che impieghi il servizio di rete senza connessione (UDP).
-**Obiettivi del Software**:
-- Connessione client-server senza autenticazione.
-- Visualizzazione sul client dei file disponibili sul server.
-- *Download* di un file dal server.
-- *Upload* di file su server.
+# Networking Programming Report A.Y. 2022
+## Task #2
+Development of a client-server application for file transfer using the connectionless network service (UDP).
+**Software Objectives**:
+- Client-server connection without authentication.
+- Displaying available files on the server at the client.
+- Downloading a file from the server.
+- Uploading files to the server.
 
-##### Specifiche del Protocollo di comunicazione
-Il protocollo deve prevedere lo scambio di due tipi di messaggi:
-- **Messaggi di comando**:
-  - Inviati dal client al server
-  - richiesta di esecuzione delle diverse operazioni
-- **Messaggi di risposta**:
-  - Inviati dal server al client
-  - Risposta ad un comando con l'esito dell'operazione
+##### Communication Protocol Specifications
+The protocol should include the exchange of two types of messages:
+- **Command Messages**:
+  - Sent from the client to the server
+  - Request for executing various operations
+- **Response Messages**:
+  - Sent from the server to the client
+  - Response to a command with the outcome of the operation
 
-### Funzionalità del Server
-- Invio del messaggio di risposta al comando **list** ali client richiedente (+client contemporaneamente).
--Messaggio di risposta contente la *file list*.
-- Invio del messaggio di risposta al comando **get** contente il file richiesto, se presente, od un opportuno messaggio di errore.
-- Ricezione di un messaggio **put** contenente il file da caricare sul server e l'invio del relativo messaggio di risposta (esito).
-  
-### Funzionalità del Client
-- Invio del messaggio **list** per richiedere la lista dei nomi dei file disponibili.
-- Invio del messaggio **get** per ottenere un file
-- Ricezione di un file richiesta tramite il mssaggio di get o la gestione dell'eventuale errore.
-- invio del messaggio **put** per effettuare l'*upload* di un file sul server.
+### Server Functionality
+- Sending a response message to the **list** command to the requesting client (+ multiple clients simultaneously).
+- Response message containing the *file list*.
+- Sending a response message to the **get** command containing the requested file, if available, or an appropriate error message.
+- Receiving a **put** message containing the file to be uploaded to the server and sending the corresponding response message (result).
+
+### Client Functionality
+- Sending the **list** message to request the list of available file names.
+- Sending the **get** message to retrieve a file.
+- Receiving a requested file through the get message or handling any errors.
+- Sending the **put** message to perform the upload of a file to the server.
